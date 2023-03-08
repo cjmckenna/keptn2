@@ -1,0 +1,20 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keptndemo
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: keptndemo
+  template:
+    metadata: 
+      labels:
+        app: keptndemo
+    spec:
+      containers:
+      - name: keptndemo
+        image: "{{ .Values.image }}"
+        ports:
+        - containerPort: 5000
