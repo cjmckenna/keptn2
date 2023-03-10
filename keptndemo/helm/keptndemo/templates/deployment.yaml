@@ -3,6 +3,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: keptndemo
+  namespace: keptndemo
+  labels:
+    app: keptndemo
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -14,7 +17,15 @@ spec:
         app: keptndemo
     spec:
       containers:
-      - name: keptndemo
-        image: "{{ .Values.image }}"
+      - image: "{{ .Values.image }}"
+        imagePullPolicy: Always
+        name: keptndemo
         ports:
         - containerPort: 5000
+        resources:
+          limits:
+            cpu: 50m
+            memory: 50Mi
+          requests:
+            cpu: 25m
+            memory: 25Mi
