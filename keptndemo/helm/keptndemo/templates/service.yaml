@@ -1,15 +1,13 @@
----
 apiVersion: v1
 kind: Service
 metadata:
-    name: keptndemo
+  name: keptndemo
+  namespace: keptndemo
 spec:
-    ports:
-    - name: "keptndemo"
-      targetPort: 5000
+  selector:
+    app: keptndemo
+  ports:
+    - protocol: TCP
       port: 80
-      nodePort: 30275
-      protocol: TCP
-   selector:
-      app: keptndemo
-   type: LoadBalancer
+      targetPort: 5000
+  type: LoadBalancer
