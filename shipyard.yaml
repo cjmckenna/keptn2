@@ -5,5 +5,12 @@ metadata:
 spec:
   stages:
     - name: "production"
-      deployment_strategy: "blue_green_service"
-      remediation_strategy: "automated"
+      sequences:
+      - name: "delivery"
+        triggeredOn:
+          - event: "dev.delivery.finished"
+        tasks: 
+        - name: "deployment"
+          properties:
+            deploymentstrategy: "blue_green_service"
+        - name: "release"
