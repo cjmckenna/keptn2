@@ -1,2 +1,0 @@
-image: 192.168.0.44/keptndemo/keptndemo:latest
-replicaCount: 1
